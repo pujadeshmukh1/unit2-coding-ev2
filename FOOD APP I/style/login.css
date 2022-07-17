@@ -1,0 +1,20 @@
+form{
+    /* border: 2px solid red; */
+    width: 400px;
+    height: 400px;
+    margin-top: 20px;
+    margin: auto;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+input{
+    width: 70%;
+    margin-left: 12%;
+}
+button{
+    width: 70%;
+    margin-left: 12%;
+    margin-top: 15px;
+}
+h1{
+   text-align: center;
+}

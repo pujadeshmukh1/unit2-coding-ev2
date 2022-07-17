@@ -1,0 +1,20 @@
+#cont-1{
+    border-radius: 15px;
+    width: 660px;
+    /* border: 2px solid red; */
+    margin: auto;
+    height: 550px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+ background-color: white;
+}
+#cont-1 img{
+    width: 400px;
+     /* border: 2px solid red;  */
+    border-radius: 15px;
+    margin-left: 20%;
+    margin-top: 5%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  } 
+  body{
+    background: teal;
+  } 
