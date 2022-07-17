@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="add_item"> 
+        <h1>Add Product</h1>
+        <input type="text" placeholder="Image URL" id="image">
+        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="price" placeholder="Price">
+        <input type="number" id="rating" placeholder="Rating">
+        <input type="text" id="desc" placeholder="Description">
+       
+    <button onclick="addItem()">Add</button>
+    </div>
+    <!-- <div>
+        <h1>Delete Product</h1>
+        <input type="number" id="delete_id">
+        <button onclick="deletProduct()">Delete</button>
+    </div>
+
+    <div>
+        <h1>put product</h1>
+        <input type="number" id="put_id"/>
+        <button onclick="updateProduct()">Put</button>
+    </div>
+    <div>
+        <h1>patch product</h1>
+        <input type="number" id="patch_id"/>
+        <button onclick="updateProduct()">Patch</button>
+    </div> -->
+</body>
+</html>
+
+<script>
+    let addItem= ()=>{
+        let image=document.getElementById("image").value;
+        let title=document.getElementById("title").value;
+        let price=+document.getElementById("price").value;
+        let rating=+document.getElementById("rating").value;
+        let desc=document.getElementById("desc").value;
+    
+    let data={image,title,price,rating,desc};
+    // console.log(data)
+    fetch("http://127.0.0.1:3000/api/items",{
+        method:"POST",
+        body:JSON.stringify(data),
+        headers:{
+            'Content-Type':'application/json',
+        },
+    })
+    .then((res)=>{
+        console.log(res);
+    })
+    .catch((err)=>{
+        console.log(err.message);
+    })
+    };
+</script>
+
+
+
+
+
+
+
+
+
+<!-- <script>
+//   async function addProduct(){
+//     let product={
+//         id:document.getElementById("id").value,
+//         name:document.getElementById("name").value,
+//         price:document.getElementById("price").value,
+//     };
+// or
+function x(id){
+   return document.getElementById(id).value;
+}
+async function addProduct(){
+    let product={
+        id:x("id"),
+        name:x("name"),
+        price:x("price"),
+    };
+
+
+
+
+
+
+    product=JSON.stringify(product);
+    let response=await fetch('http://127.0.0.1:3000/api/products',{
+        method:'POST',
+        body:product,
+        headers:{
+            'Content-Type':'application/json',
+        },
+    });
+
+let data=await response.json();
+console.log('data',data)
+    }
+
+
+// delete func
+async function deletProduct(){
+let id=document.getElementById('delete_id').value;
+
+let response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+    method:'DELETE',
+headers:{
+    'Content-Type':'application/json',
+},
+});
+let data=await response.json();
+//console.log()
+}
+
+async function updateProduct(){
+let id=document.getElementById('put_id').value;
+
+let response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+    method:'PUT',
+    body:JSON.stringify({
+        name:'messi',
+        price:800,
+    }),
+headers:{
+    'Content-Type':'application/json',
+},
+});
+let data=await response.json();
+//console.log()
+}
+
+async function updateProduct(){
+let id=document.getElementById('patch_id').value;
+
+let response=await fetch(`http://127.0.0.1:3000/api/products/${id}`,{
+    method:'PATCH',
+    body:JSON.stringify({
+        name:'messi',
+        price:800,
+    }),
+headers:{
+    'Content-Type':'application/json',
+},
+});
+let data=await response.json();
+//console.log()
+}
+
+
+</script> -->

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #items{
+        margin: auto;
+        width: 95%;
+        display: grid;
+        grid-template-columns: repeat(4,1fr);
+       }  
+       img{
+        margin: auto;
+        width: 100%;
+        height: 300px;
+        border-radius: 20px;
+       }
+       div{
+        border-radius: 20px;
+        border: 1px solid;
+        gap:30px;
+       }
+       h2,h3{
+        text-align: center;
+        line-height:5px;
+       }
+    </style>
+</head>
+<body>
+    <button onclick="sortLHT()">sort price low to high</button>
+    <button onclick="filterGT5()">Filter Rating greater than 5</button>
+    <div id="items"></div>
+</body>
+</html>
+<script>
+    let getData=async ()=>{
+        let res=await   fetch("http://127.0.0.1:3000/api/items")
+        let data=await  res.json(); 
+        append(data,items)
+       
+        console.log(data)
+    }
+    getData();
+
+
+   function append(data,items){
+    // let items=document.getElementById("items");
+    data.forEach(({image,title,price,rating,desc})=>{
+   let img =document.createElement("img");
+   img.src=image;
+
+   let name=document.createElement("h2");
+   name.innerText=`Dish_name: ${title}`
+
+   let pri=document.createElement("h3");
+   pri.innerText=`Price: ${price}`
+
+   let rat=document.createElement("h3");
+   rat.innerText=`Rating: ${rating}`
+
+   let dis=document.createElement("h3");
+   dis.innerText=`Description: ${desc}`
+
+   let div=document.createElement("div")
+
+   div.append(img,name,pri,rat,dis)
+   items.append(div)
+
+    })
+   }
+
+
+    let sortLHT= async()=>{
+        let res=await   fetch("http://127.0.0.1:3000/api/items/?_sort=price&_order=asc")
+        let data=await  res.json(); 
+        console.log(data)
+    }
+    sortLHT()
+    let filterGT5= async()=>{
+        let res=await   fetch("http://127.0.0.1:3000/api/items/?rating_gte=5")
+        //let res=await   fetch("http://127.0.0.1:3000/api/items/?rating_gte=4")
+        let data=await  res.json(); 
+        console.log(data)
+    }
+    filterGT5()
+</script>
